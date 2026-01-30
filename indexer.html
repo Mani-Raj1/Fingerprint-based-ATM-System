@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Money</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transaction.css') }}">
+    <style>
+        .error-message {
+            color: red;
+            margin-top: 10px; /* Space above the error message */
+        }
+        .form-group {
+            position: relative; /* Makes the container relative for absolute positioning */
+        }
+        .eye-icon {
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 10px; /* Adjust positioning as necessary */
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Remove Money</h1>
+
+    <form method="POST" action="{{ url_for('validate') }}">
+        <input type="text" name="account_number" placeholder="Account Number" required>
+        
+        <div class="form-group">
+            <input type="password" id="cvv" name="cvv" placeholder="CVV" required>
+            <span class="eye-icon" onclick="toggleCVV()">👁️</span> <!-- Eye icon -->
+        </div>
+
+        <input type="text" name="expiry_date" placeholder="Expiry Date (MM/YY)" required>
+        <button type="submit">Validate</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li class="error-message">{{ message }}</li>  <!-- Error message below the form -->
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <script>
+        function toggleCVV() {
+            var cvvInput = document.getElementById('cvv');
+            if (cvvInput.type === "password") {
+                cvvInput.type = "text"; // Show CVV
+            } else {
+                cvvInput.type = "password"; // Hide CVV
+            }
+        }
+    </script>
+</body>
+</html>
+

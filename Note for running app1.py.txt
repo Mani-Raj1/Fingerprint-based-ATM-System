@@ -1,0 +1,9 @@
+website:- http://127.0.0.1:5000
+
+installing firebase:- pip3 install firebase-admin
+
+running app1.py and app.py:-
+
+cd C:\Users\manir\OneDrive\Desktop\atm-simulation
+
+python app1.py

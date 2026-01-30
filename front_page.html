@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/front_page.css') }}">
+    <title>ATM Front Page</title>
+</head>
+<body>
+    <h1>Welcome to the ATM System</h1>
+    <div class="button-container">
+        <a href="{{ url_for('remove_money') }}"><button>Remove Money</button></a>
+        <a href="{{ url_for('add_money') }}"><button>Add Money</button></a>
+        <a href="#"><button>Add/Remove Nominee</button></a>
+    </div>
+</body>
+</html>
+
+
+

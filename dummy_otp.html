@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy OTP Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dummy_otp.css') }}">
+    <style>
+        /* Styling for OTP container */
+        .otp-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        .otp-input {
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .otp-submit {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Additional styling to ensure input boxes have consistent size and alignment */
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <h2>Enter OTP</h2>
+        <p>(This is just a dummy OTP)</p>
+        <form method="POST">
+            <div class="otp-inputs">
+                <!-- 6 individual input boxes -->
+                <input type="text" name="otp1" maxlength="1" class="otp-input" id="otp1">
+                <input type="text" name="otp2" maxlength="1" class="otp-input" id="otp2">
+                <input type="text" name="otp3" maxlength="1" class="otp-input" id="otp3">
+                <input type="text" name="otp4" maxlength="1" class="otp-input" id="otp4">
+                <input type="text" name="otp5" maxlength="1" class="otp-input" id="otp5">
+                <input type="text" name="otp6" maxlength="1" class="otp-input" id="otp6">
+            </div>
+            <button type="submit" class="otp-submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Select all OTP input elements
+        const otpInputs = document.querySelectorAll('.otp-input');
+
+        otpInputs.forEach((input, index) => {
+            // Handle keyup event to move to the next or previous box
+            input.addEventListener('keyup', (e) => {
+                // Move to next box on number entry
+                if (e.key >= 0 && e.key <= 9) {
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                }
+                // Move to the previous box on backspace
+                else if (e.key === 'Backspace') {
+                    if (index > 0 && !input.value) {
+                        otpInputs[index - 1].focus();
+                    }
+                }
+            });
+
+            // Prevent non-numeric input
+            input.addEventListener('input', () => {
+                if (!/^\d$/.test(input.value)) {
+                    input.value = '';  // Clear the input if it's not a digit
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

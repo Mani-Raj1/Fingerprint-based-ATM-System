@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Simulation - Account Info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <h2>Enter Your Account Information</h2>
+    <form action="{{ url_for('validate') }}" method="post">
+        <label for="account_number">Account Number:</label>
+        <input type="text" id="account_number" name="account_number" required>
+
+        <label for="cvv">CVV:</label>
+        <input type="password" id="cvv" name="cvv" required>
+
+        <label for="expiry_date">Expiry Date (MM/YY):</label>
+        <input type="text" id="expiry_date" name="expiry_date" required>
+
+        <button type="submit">Proceed</button>
+    </form>
+
+    <!-- Display error message here -->
+    {% if error_message %}
+        <p style="color:red; margin-top: 20px;">{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>

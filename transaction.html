@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transaction.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ name }}</h1>
+    <form action="{{ url_for('process_transaction') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="account_name" value="{{ account_name }}">
+        <input type="hidden" name="account_number" value="{{ account_number }}">
+
+        <label for="amount">Enter Amount:</label>
+        <input type="text" id="amount" name="amount" required>
+
+        <label for="password">Enter Password:</label><b1></b1>
+        <input type="password" id="password" name="password" required>
+
+        <label for="fingerprint">Upload Fingerprint Image:</label>
+        <input type="file" id="fingerprint" name="fingerprint" accept="image/*" required>
+
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
